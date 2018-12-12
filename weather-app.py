@@ -8,9 +8,9 @@ import requests
 import bs4
 
 def main():
-    city = input("type the city or country name to get weather: ")
+    city = input("Enter City name with Country Code(optional) [london,uk]: ")
     html = get_data_from_website(city)
-    data = get_info_about_city(html)
+    data = get_weather_of_city(html)
     print("The temperature of {} is {}".format(data[0], data[1]))
 
 def get_data_from_website(name):
@@ -19,7 +19,7 @@ def get_data_from_website(name):
 
     return html_response.text
 
-def get_info_about_city(html):
+def get_weather_of_city(html):
     soup = bs4.BeautifulSoup(html, "html.parser")
     location = soup.div.string
     temp = soup.find(title="Current Temperature").string
