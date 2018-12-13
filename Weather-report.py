@@ -15,13 +15,14 @@ while i == 0:
             city)
         response = requests.get(html)
         data = response.text
-
         soup = bs4.BeautifulSoup(data, "html.parser")
-
         location = soup.div.string
         temp = soup.find(title="Current Temperature").string
-
+        print("")
         print("The temperature of {} is {}".format(location, temp))
+        print("")
     elif city == "x":
         print("Thanks ba-bye")
         break
+    else:
+        print("{} is a wrong city".format(city))
